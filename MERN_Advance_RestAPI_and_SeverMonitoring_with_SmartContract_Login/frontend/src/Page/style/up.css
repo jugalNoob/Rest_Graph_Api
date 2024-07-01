@@ -1,0 +1,36 @@
+.allform{
+ background-color: black;   
+ width: 100%;
+ height: 100vh;
+ overflow-y: scroll;
+}
+
+
+.forms{
+
+margin-top: 50px;
+}
+
+
+.forms h2{
+
+    margin-top: 20px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: rgb(81, 81, 81);
+}
+
+
+.forms p{
+    margin-top: 20px;
+    font-weight: bold;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+form input[name="select-box"] {
+
+    margin-top: 20px;
+    padding: 45px;
+
+}

@@ -1,0 +1,94 @@
+[{
+    "name": "Rahul jatt",
+  "roll_no": "10",
+  "gender": "male",
+  "subject": "Arts",
+
+  "classs": "10th"  
+},
+{
+    "name": "viren singh",
+    "roll_no": "11",
+    "gender": "male",
+    "subject": "Arts",
+    "classs": "10th"
+},
+
+{
+    "name": "Akhile Singh",
+    "roll_no": "4",
+    "gender": "male",
+    "subject": "Arts",
+ 
+    "classs": "10th"
+},{
+    "name": "Knaika sharma",
+    "roll_no": "14",
+    "gender": "male",
+    "subject": "Arts",
+    "classs": "10th"
+},
+{
+    "name": "Rubya sharma",
+    "roll_no": "21",
+    "gender": "male",
+    "subject": "Arts",
+
+    "classs": "10th"
+},
+{
+    "name": "james sharma",
+    "roll_no": "17",
+    "gender": "male",
+    "subject": "Arts",
+
+    "classs": "10th"
+},{
+    "name": "iamjugalanman",
+    "classs": "10th",
+    "roll_no": "356",
+    "gender": "male",
+    "subject": "femake"
+},{
+    "name": "jugal@#$",
+    "classs": "69th",
+    "roll_no": "63",
+    "gender": "Female",
+    "subject": "fuckboy"
+},
+{
+    "name": "kiojs",
+    "classs": "10th",
+    "roll_no": "36",
+    "gender": "male",
+    "subject": "Math"
+},{
+    "name": "jugal sharma",
+    "classs": "17th",
+    "roll_no": "45",
+    "gender": "Female",
+    "subject": "vxcvfx"
+},
+{
+    "name": "andtv",
+    "classs": "17th",
+    "roll_no": "78",
+    "gender": "Bitcoin",
+    "subject": "vxcvfx"
+},
+{
+    "name": "realme",
+    "classs": "19th",
+    "roll_no": "69",
+    "gender": "Mobile",
+    "subject": "Mobile"
+},
+{
+    "name": "graphgql",
+    "classs": "15th",
+    "roll_no": "45",
+    "gender": "Graph",
+    "subject": "Graph"
+}
+
+]

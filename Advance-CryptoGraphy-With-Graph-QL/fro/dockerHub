@@ -1,0 +1,9 @@
+1::docker login
+
+
+2::docker hub push the image|||||||||||||
+
+3::docker  tag reactcrypto docker786123/reactcrypto
+
+
+4::docker push  docker786123/reactcrypto

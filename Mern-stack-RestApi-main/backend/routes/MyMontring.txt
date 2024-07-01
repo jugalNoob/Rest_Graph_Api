@@ -1,0 +1,44 @@
+const activeConnections = new client.Gauge({
+    name: "active_connections",
+    help: "Number of active connections",
+    labelNames: ['service'],
+  });
+
+  // Usage
+  activeConnections.labels('api').set(10); // Set the number of active connections for the 'api' service to 10
+
+
+////////////Summary ///////////////LINK - 
+  const requestDurationSummary = new client.Summary({
+    name: "request_duration_summary",
+    help: "Summary of request durations",
+    labelNames: ['method', 'route'],
+    percentiles: [0.5, 0.9, 0.99],
+  });
+  
+      // Observe the actual request duration using the 'time' parameter
+    // requestDurationSummary.labels(
+    //   req.method || "GET"  || "POST" || "PATCH" || "Delete"
+    // ).observe(time);
+
+  // Usage
+  requestDurationSummary.labels('GET', '/api/users').observe(50); // Observe a request duration of 50 milliseconds
+  
+
+  ////HistoryGRam
+   const reqResTimeWithUser = new client.Histogram({
+    name: "http_express_req_res_time",
+    help: "This tells how much is taken by req and res",
+    labelNames: ['method', 'route', 'status_code', 'user'],
+    buckets: [1, 50, 100, 200, 500, 800, 1000, 2000]
+  });
+  
+  // Usage
+  reqResTimeWithUser.labels('GET', '/api/users', 200, 'user123').observe(100);
+  
+
+//Total incremnet /////!SECTION
+const totaReq = new client.Counter({
+  name: "total_req",
+  help: "Tells total req"
+});

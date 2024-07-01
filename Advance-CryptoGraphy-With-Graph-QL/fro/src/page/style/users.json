@@ -1,0 +1,37 @@
+
+ [
+      {
+        "name": "jugal",
+        "country": "india",
+        "age": 30,
+        "email": "jugal@example.com"
+      },
+      {
+        "name": "jonny",
+        "country": "usa",
+        "age": 25,
+        "email": "jonny@example.com"
+      },
+      {
+        "name": "sins",
+        "country": "usa",
+        "age": 28,
+        "email": "sins@example.com"
+      },
+      {
+        "name": "putin",
+        "country": "russian",
+        "age": 40,
+        "email": "putin@example.com",
+        "scouse": [10, 20, 30]
+      },
+      {
+        "name": "russ-boy",
+        "country": "russian",
+        "age": 22,
+        "email": "russ-boy@example.com",
+        "scouse": [15, 25, 35]
+      }
+    ]
+
+  

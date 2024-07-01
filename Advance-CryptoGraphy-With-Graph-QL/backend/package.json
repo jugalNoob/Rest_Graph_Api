@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "@apollo/server": "^4.9.3",
+    "@justalk/pornhub-api": "^3.5.0",
+    "@types/axios": "^0.14.0",
+    "apollo-server-express": "^3.12.1",
+    "axios": "^1.5.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "discord-phub": "^1.0.7",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fastify": "^4.23.2",
+    "graphql": "^16.8.1",
+    "mercurius": "^13.1.0",
+    "mongodb": "^6.1.0",
+    "mongoose": "^7.5.2",
+    "pornhub.js": "^1.7.4"
+  }
+}

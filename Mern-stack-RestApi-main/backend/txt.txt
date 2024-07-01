@@ -1,0 +1,14 @@
+exports.finds= async (req, res) => {
+    // http://localhost:9000/finds?roll_no=5698&name=useindian
+    try {
+      
+        const check = await Register.find(query);
+        console.log(req.query);
+        // res.json(check);  // Send the retrieved data as JSON response
+console.log(check)
+        
+    } catch (error) {
+        console.log(error);
+        res.status(401).json({ error: "not_good_io" });
+    }
+};

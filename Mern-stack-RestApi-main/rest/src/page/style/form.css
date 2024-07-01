@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.background{
+    background-color:#e0e0e0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+   
+}
+
+.allone{
+    width: 500px;
+    height: 550px;
+    
+    border-radius: 34px;
+background: #e0e0e0;
+box-shadow: inset 20px 20px 47px #c1c1c1,
+            inset -20px -20px 47px #ffffff;
+            margin: auto;
+            margin-top: 100px;
+            
+}
+
+.allone form input[type="text"]{
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 50px;
+}
+
+.allone form input[type="text"]::placeholder{
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.allone form input[type="email"]{
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 50px;
+}
+
+.allone form input[type="email"]::placeholder{
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.allone form input[type="number"]{
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 50px;
+}
+
+.allone form input[type="number"]::placeholder{
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.allone button{
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 30px;
+    width: 100px;
+    background-color: black;
+    color: white;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+
+.allone p{
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.keys {
+    outline: none;
+    border: none;
+
+    margin-top: 50px;
+   
+    
+
+}
+
+.keys button{
+    outline: none;
+    border: none;
+    width: 200px;
+    margin-left: 40px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    text-transform: capitalize;
+}
+
+.keysNumber {
+    margin: 50px;
+    text-transform: capitalize;
+    padding: 10px;
+    width: 600px;
+    height: 200px;
+    
+
+background: #e0e0e0;
+box-shadow: inset 20px 20px 47px #c1c1c1,
+            inset -20px -20px 47px #ffffff;
+            margin: auto;
+            margin-top: 100px;
+            text-transform: capitalize;
+            border-radius: 40px;
+ 
+}
+
+
+.keysNumber h5{
+text-transform: capitalize;
+font-size: 0.7rem;
+            
+}

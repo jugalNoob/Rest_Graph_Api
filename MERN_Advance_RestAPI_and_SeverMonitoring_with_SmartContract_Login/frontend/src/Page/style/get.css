@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Lunasima&family=Open+Sans:wght@300;400&family=Roboto&display=swap');
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+
+.background{
+    background-image: linear-gradient(to left bottom, #b2d30e, #61bc49, #00a066, #00816f, #006064, #136168, #21626c, #2c636f, #268894, #14aeb6, #00d6d5, #00ffef);
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+
+.limit{
+    margin-top: 20px;
+}
+
+.limit h1{
+    font-family: 'Lunasima', cursive;
+    color: white;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+}
+
+
+.limit input[type="text"]{
+    border: none;
+    outline: none;
+    border: 4px solid  pink;
+    background-color: black;
+    border-radius: 5px;
+    padding: 7px;
+    color: white;
+    width: 250px;
+    
+
+}
+
+
+.limit input[type="text"]::placeholder{
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.limit input[type="number"]{
+    border: none;
+    outline: none;
+    padding: 7px;
+    border-radius: 7px;
+    margin: 30px;
+    background-color: gray;
+    color: white;
+    border: 3px solid white;
+    width: 100px;
+}
+
+.limit input[type="number"]::placeholder{
+    text-transform: capitalize;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+.display{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.ides{
+    margin: 50px;
+    text-align: center;
+    margin-top: 50px;
+    margin: auto;
+    width: 30%;
+    height: 450px;
+    margin-top: 20px;
+    border-radius: 20px;
+    border-radius: 22px;
+    background: #8f93d6;
+    box-shadow: inset 5px 5px 10px #777ab2,
+                inset -5px -5px 10px #a7acfa;
+}
+
+
+
+.ides h1{
+    text-transform: capitalize;
+    padding: 5px;
+    color: white;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+}
+
+#ides{
+
+    color: black;
+    font-weight: bold;
+    font-family: 'Lunasima', sans-serif;
+
+}

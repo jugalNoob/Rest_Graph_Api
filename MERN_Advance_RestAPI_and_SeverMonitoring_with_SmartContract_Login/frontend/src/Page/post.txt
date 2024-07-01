@@ -1,0 +1,112 @@
+import React, { useState } from 'react';
+
+function Post() {
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [hobbies, setHobbies] = useState(["jugal" , "sharma"]);
+  const [hobbiesInput, setHobbiesInput] = useState(''); // To manage the input for hobbies
+  const [bio, setBio] = useState('');
+  const [isEligible, setIsEligible] = useState('');
+  const [gender, setGender] = useState('');
+  const [country, setCountry] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Split the hobbiesInput using a comma as a delimiter
+    const hobbiesArray = hobbiesInput.split(',').map((hobby) => hobby.trim());
+    const userData = {
+      name,
+      age,
+   hobbiesArray,
+      bio,
+      isEligible,
+      gender,
+      country,
+      hobbies
+     
+    };
+    console.log(userData);
+    // You can send this data to a server or perform other actions here.
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder='Name'
+        />
+        <br />
+
+        <input
+          type='number'
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+          placeholder='Age'
+        />
+        <br />
+
+        <input
+          type='text'
+          value={hobbiesInput}
+          onChange={(e) => setHobbiesInput(e.target.value)}
+          placeholder='Enter hobbies separated by commas'
+        />
+        <br />
+
+        <label>
+          Gender:
+          <input
+            type='radio'
+            name='gender'
+            value='Male'
+            checked={gender === 'Male'}
+            onChange={(e) => setGender(e.target.value)}
+          />
+          Male
+        </label>
+        <label>
+          <input
+            type='radio'
+            name='gender'
+            value='Female'
+            checked={gender === 'Female'}
+            onChange={(e) => setGender(e.target.value)}
+          />
+          Female
+        </label>
+        <br />
+
+        <input
+          type='text'
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+          placeholder='User Bio'
+        />
+        <br />
+
+        <input
+          type='text'
+          value={isEligible}
+          onChange={(e) => setIsEligible(e.target.value)}
+          placeholder='Enter true or false'
+        />
+        <br />
+
+        <input
+          type='text'
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          placeholder='Enter country'
+        />
+        <br />
+
+        <button type='submit'>Submit</button>
+      </form>
+    </div>
+  );
+}
+
+export default Post;

@@ -1,0 +1,95 @@
+.verfy{
+    margin-top: 50px;
+}
+
+.verfy h1{
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.verfy h5{
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+
+.verfy  input[type="text"]{
+
+    outline: none;
+    border: none;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 500px;
+}
+
+.verfy  input[type="text"]::placeholder{
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+.verfy button{
+    outline: none;
+    border: none;
+width: 200px;
+padding: 7px;
+border-radius: 7px;
+background-color: black;
+color: wheat;
+font-weight: bold;
+font-size: 1rem;
+text-transform: capitalize;
+}
+
+.info{
+
+    margin-top: 50px;
+}
+
+
+
+.info h1{
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.info  input[type="text"]{
+
+    outline: none;
+    border: none;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 500px;
+}
+
+.info  input[type="text"]::placeholder{
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+.info button{
+    outline: none;
+    border: none;
+width: 200px;
+padding: 7px;
+border-radius: 7px;
+background-color: black;
+color: wheat;
+font-weight: bold;
+font-size: 1rem;
+text-transform: capitalize;
+}
+
+.info  h1{
+    margin-top: 20px;
+text-transform: capitalize;
+color: rgb(144, 144, 144);
+}
