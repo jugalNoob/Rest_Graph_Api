@@ -280,3 +280,42 @@ exports.delete= async (req, res) => {
         res.status(401).json({ error: "Internal server error" });
     }
 }
+
+
+
+::::::::: Multi Build Error Handle  -------------->><<>
+    // Example routes
+app.get('/', (req, res, next) => {
+    // Simulate a bad request error
+    next(new BadRequestError('Invalid request body'));
+});
+
+app.get('/user/:id', (req, res, next) => {
+    const userId = req.params.id;
+
+    // Simulate a not found error
+    if (userId !== '123') {
+        return next(new NotFoundError('User not found'));
+    }
+
+    // Simulate success
+    res.json({ userId, username: 'john_doe' });
+});
+
+
+
+
+app.use((err, req, res, next) => {
+    if (err instanceof BadRequestError) {
+        return res.status(400).json({ error: err.message });
+    }
+
+    if (err instanceof NotFoundError) {
+        return res.status(404).json({ error: err.message });
+    }
+
+    // Handle other types of errors
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+})
+
