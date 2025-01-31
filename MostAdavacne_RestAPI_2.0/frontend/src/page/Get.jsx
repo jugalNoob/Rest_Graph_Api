@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import './style/PaginatedList.css'; // Importing custom CSS
+import './style/get.css'; // Importing custom CSS
 
 const PaginatedList = () => {
   const [data, setData] = useState([]);
@@ -51,7 +51,19 @@ const PaginatedList = () => {
       <h2>Paginated List</h2>
       <form onSubmit={handleSearch} className="search-form">
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
-        <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" />
+        {/* <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" /> */}
+
+      
+        <label>
+        Country:
+        <select value={country} onChange={(e) => setCountry(e.target.value)} required>
+          <option value="">Select Country</option>
+          <option value="USA">USA</option>
+          <option value="Canada">Canada</option>
+          <option value="India">India</option>
+          <option value="UK">UK</option>
+        </select>
+      </label>
         <input type="text" value={hobby} onChange={(e) => setHobby(e.target.value)} placeholder="Hobby" />
         <input type="text" name="" value={priceg} onChange={(e)=>setPriceg(e.target.value)}  placeholder='price greater' />
         <input type="text" name="" value={pricel} onChange={(e)=>setPricel(e.target.value)}  placeholder='price less' />

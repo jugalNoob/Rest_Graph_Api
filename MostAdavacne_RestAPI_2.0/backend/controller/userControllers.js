@@ -184,16 +184,16 @@ exports.forms = async (req, res) => {
 // Update User Infomrations ---- v>>>>
 
 
-exports.updates = async (req, res) => {
-    res.send("Update Datas")
-}
+// exports.updates = async (req, res) => {
+//     res.send("Update Datas")
+// }
 
 
 
 
-/// Delete User Infomation  =============>>>
-exports.delete= async (req, res) => {
+// /// Delete User Infomation  =============>>>
+// exports.delete= async (req, res) => {
 
-    res.send("Delete Datas")
+//     res.send("Delete Datas")
 
-}
+// }

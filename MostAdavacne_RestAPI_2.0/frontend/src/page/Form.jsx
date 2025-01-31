@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import './style/form.css';
 
 const FormComponent = () => {
   const [name, setName] = useState('');
