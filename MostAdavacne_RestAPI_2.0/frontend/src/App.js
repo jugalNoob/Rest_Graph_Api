@@ -7,6 +7,7 @@ import Form from "./page/Form"
 import Get from './page/Get'
 import Home from "./page/Home"
 import Update from './page/Update'
+import Detele from './page/Detele'
 
 
 
@@ -31,8 +32,12 @@ const router=createBrowserRouter([  /// install react router https://medium.com/
   {
     path:'/update',
     element:<Update/>
-  }
+  },
 
+  {
+    path:'/delete',
+    element:<Detele/>
+  }
 
 ])
 

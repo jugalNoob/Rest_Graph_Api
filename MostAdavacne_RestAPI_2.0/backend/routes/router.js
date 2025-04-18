@@ -26,7 +26,8 @@ router.patch("/updates/:id",updates.updatesAll)
 
 
 //delete Information about
-router.get("/del",deleteus.deleteuser)
+
+router.delete("/v1/delId/:id/:name",deleteus.deleteuser)
 
 
 

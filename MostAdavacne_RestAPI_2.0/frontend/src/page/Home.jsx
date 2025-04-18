@@ -14,6 +14,8 @@ function Home() {
 <NavLink to='/form'>form</NavLink>
 <br />
 <NavLink to='/update'>update</NavLink>
+<br />
+<NavLink to="/delete">delete</NavLink>
     </div>
   )
 }

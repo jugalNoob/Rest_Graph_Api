@@ -15,22 +15,20 @@ const FormComponent = () => {
   const [gender, setGender] = useState('');
   const [hobbies, setHobbies] = useState(['', '']); // State specifically for hobbies
 
+  let timeout; // Make sure this is defined in the appropriate scope
+  let count = 0; // Initialize count
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("Count:", count++); // Track click count
+  
+  
+    clearTimeout(timeout); // Clear previous timeout
+
+    timeout = setTimeout(async () => {
     try {
-      const data = {
-        name,
-        age,
-        price,
-        birthDate,
-        bloodGroup,
-        email,
-        country,
-        bio,
-        isEligible,
-        gender,
-        hobbies
+      const data = {name,age,price,birthDate,bloodGroup,email,country,bio,isEligible,gender, hobbies
       };
   
       // Using axios to send the data
@@ -47,6 +45,7 @@ const FormComponent = () => {
       console.error("Error submitting form:", error);
       alert("Failed to submit the form. Please try again.");
     }
+  }, 2000);
   };
   
   return (
@@ -83,7 +82,17 @@ const FormComponent = () => {
       <br />
       <label>
         Blood Group:
-        <input type="text" value={bloodGroup} onChange={(e) => setBloodGroup(e.target.value)} required />
+
+        <select value={bloodGroup} onChange={(e) => setBloodGroup(e.target.value)} required>
+
+        <option value="" disabled>select blood group</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        </select>
+
+       
       </label>
       <br />
       <br />

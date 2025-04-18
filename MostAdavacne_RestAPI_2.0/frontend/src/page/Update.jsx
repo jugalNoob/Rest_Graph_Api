@@ -7,8 +7,22 @@ const Update = () => {
   const [age, setAge] = useState("");
   const [country, setCountry] = useState("");
 
+
+  
+  let timeout; // Make sure this is defined in the appropriate scope
+  let count = 0; // Initialize count
+
+
   const handleUpdate = async (e) => {
     e.preventDefault();
+
+    console.log("Count:", count++); // Track click count
+  
+
+  
+    clearTimeout(timeout); // Clear previous timeout
+
+    timeout = setTimeout(async () => {
 
     try {
       const data = { name, age, country };
@@ -27,6 +41,9 @@ const Update = () => {
       console.error("Error updating student:", error);
       alert("An error occurred while updating student data.");
     }
+
+    
+  }, 2000);
   };
 
   return (

@@ -1,0 +1,137 @@
+const objArray = [
+    {
+        index: 0,
+        details: {
+            name: "Jugal Sharma",
+            total: 45,
+            accountNumber: "1234567890",
+            email: "jugal@example.com",
+            phone: "9876543210",
+            address: "123 Main St, City, Country",
+            accountType: "Savings",
+            createdAt: new Date().toISOString(),
+        }
+    },
+    {
+        index: 1,
+        details: {
+            name: "Kanika Sharma",
+            total: 69,
+            accountNumber: "0987654321",
+            email: "kanika@example.com",
+            phone: "8765432109",
+            address: "456 Elm St, City, Country",
+            accountType: "Checking",
+            createdAt: new Date().toISOString(),
+        }
+    },
+    {
+        index: 2,
+        details: {
+            name: "Rahul Verma",
+            total: 32,
+            accountNumber: "5678901234",
+            email: "rahul@example.com",
+            phone: "7654321098",
+            address: "789 Pine St, City, Country",
+            accountType: "Savings",
+            createdAt: new Date().toISOString(),
+        }
+    },
+    {
+        index: 3,
+        details: {
+            name: "Simran Kaur",
+            total: 85,
+            accountNumber: "2345678901",
+            email: "simran@example.com",
+            phone: "6543210987",
+            address: "101 Maple St, City, Country",
+            accountType: "Business",
+            createdAt: new Date().toISOString(),
+        }
+    },
+    {
+        index: 4,
+        details: {
+            name: "Amit Gupta",
+            total: 55,
+            accountNumber: "3456789012",
+            email: "amit@example.com",
+            phone: "5432109876",
+            address: "202 Oak St, City, Country",
+            accountType: "Savings",
+            createdAt: new Date().toISOString(),
+        }
+    },
+    {
+        index: 5,
+        details: {
+            name: "Priya Singh",
+            total: 71,
+            accountNumber: "4567890123",
+            email: "priya@example.com",
+            phone: "4321098765",
+            address: "303 Cedar St, City, Country",
+            accountType: "Checking",
+            createdAt: new Date().toISOString(),
+        }
+    },
+    {
+        index: 6,
+        details: {
+            name: "Rohan Mehta",
+            total: 29,
+            accountNumber: "5678901234",
+            email: "rohan@example.com",
+            phone: "3210987654",
+            address: "404 Birch St, City, Country",
+            accountType: "Business",
+            createdAt: new Date().toISOString(),
+        }
+    },
+    {
+        index: 7,
+        details: {
+            name: "Ananya Das",
+            total: 63,
+            accountNumber: "6789012345",
+            email: "ananya@example.com",
+            phone: "2109876543",
+            address: "505 Walnut St, City, Country",
+            accountType: "Savings",
+            createdAt: new Date().toISOString(),
+        }
+    },
+    {
+        index: 8,
+        details: {
+            name: "Vikram Rao",
+            total: 47,
+            accountNumber: "7890123456",
+            email: "vikram@example.com",
+            phone: "1098765432",
+            address: "606 Chestnut St, City, Country",
+            accountType: "Checking",
+            createdAt: new Date().toISOString(),
+        }
+    },
+    {
+        index: 9,
+        details: {
+            name: "Neha Kapoor",
+            total: 90,
+            accountNumber: "8901234567",
+            email: "neha@example.com",
+            phone: "9876543210",
+            address: "707 Redwood St, City, Country",
+            accountType: "Business",
+            createdAt: new Date().toISOString(),
+        }
+    }
+];
+
+console.log("Generated Users:", objArray);
+let jsondata = JSON.stringify(objArray); // Correct way to convert data to JSON string
+localStorage.setItem("userData", jsondata); // Stores JSON string in localStorage
+

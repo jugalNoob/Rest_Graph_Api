@@ -32,7 +32,9 @@ const PaginatedList = () => {
         setTotalPages(Math.ceil(response.data.totalCount / limit));
      
       } catch (error) {
-        console.error("Error fetching data:", error);
+        alert("Error fetching data:", error.response.data.message);
+        console.error("Error fetching data:", error.response.data.message);
+    
       }
     };
     fetchData();

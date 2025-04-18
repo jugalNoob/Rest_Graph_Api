@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+service MyService {
+  rpc GetHello (HelloRequest) returns (HelloResponse);
+}
+
+message HelloRequest {
+  // Empty input
+}
+
+message Album {
+  int32 userId = 1;
+  int32 id = 2;
+  string title = 3;
+}
+
+message HelloResponse {
+  repeated Album albums = 1;
+}

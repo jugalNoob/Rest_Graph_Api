@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config(); // If you're using dotenv to manage environment variables
 
-const DB = process.env.DATAS;
+const DB ="mongodb+srv://jugal786:jugal786@cluster0.sgg8t.mongodb.net/ones?retryWrites=true&w=majority";
 
 
 (async () => {
