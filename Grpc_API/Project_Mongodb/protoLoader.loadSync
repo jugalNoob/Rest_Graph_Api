@@ -1,0 +1,7 @@
+const packageDefinition = protoLoader.loadSync('service.proto', {
+  keepCase: true,
+  longs: String,
+  enums: String,
+  defaults: true,
+  oneofs: true,
+});
