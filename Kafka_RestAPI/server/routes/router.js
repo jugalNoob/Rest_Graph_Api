@@ -8,6 +8,7 @@ const { sendMessageToKafka } = require("../producer/product_get"); // Import pro
 
 const { sendMessageupdate } = require("../producer/producer_up");
 
+const {  sendMessagedelete } = require("../producer/producer_del");
 const router = express.Router();
 
 // Initialize Kafka Producer
@@ -58,68 +59,53 @@ router.get("/users", async (req, res) => {
 });
 
 
-// Update Data In Kaskfa  ------------------->>
+// Update Data In Kaskfa  ------------------->> :::::::::::::::::::::::::
+
+router.patch("/update-user", async (req, res) => {
+    const {  email, password} = req.body;
 
 
-router.put("/update-user/:id", async (req, res) => {
-  const { name, age, country } = req.body;
-  const _id = req.params.id;
+    try {
+        const userUpdateData = { email,password };
 
-  if (!name || !age || !country) {
-      return res.status(400).json({ error: "❌ Name, age, and country are required." });
+        await  sendMessageupdate ("UserUpdateApi", userUpdateData); // <-- Use separate topic for updates
+
+        res.status(200).json({
+            message: "✅ User update request sent to Kafka successfully",
+            user: userUpdateData,
+        });
+    } catch (error) {
+        console.error("❌ Error sending update data to Kafka:", error);
+        res.status(500).json({ error: "Failed to send user update to Kafka" });
+    }
+});
+/// ----------------->>>>>>>>>>>> Delete Your data 
+
+
+// http://localhost:9000/deletes/67ef623f5279937d42c0b159/Postman
+
+
+router.delete("/deletes/:id/:name", async (req, res) => {
+  // **correct** destructuring:
+  const { id, name } = req.params;
+
+  if (!id || !name) {
+    return res.status(400).json({ error: "_id and name are required" });
   }
 
   try {
-      const updatedUser = await Register.findByIdAndUpdate(
-          _id,
-          { name, age, country },
-          { new: true }
-      );
+    // send exactly what your consumer expects:
+    await sendMessagedelete("DeleteUserTopic", { id, name });
 
-      if (!updatedUser) {
-          return res.status(404).json({ status: "❌ User not found" });
-      }
-
-      // Send to Kafka
-      await sendMessageupdate("UserUpdateTopic", updatedUser);
-
-      res.status(200).json({
-          message: "✅ User updated and message sent to Kafka",
-          data: updatedUser,
-      });
-  } catch (error) {
-      console.error("❌ Update error:", error);
-      res.status(500).json({ error: "Internal server error" });
+    res.status(200).json({
+      message: "Delete request sent to Kafka successfully",
+      data: { id, name }
+    });
+  } catch (err) {
+    console.error("Error sending delete data to Kafka:", err);
+    res.status(500).json({ error: "Failed to send delete data to Kafka" });
   }
 });
-
-
-
-const { sendMessagedelete } = require("../kafka/producer");
-
-router.delete("/delete-user/:id", async (req, res) => {
-    try {
-        const _id = req.params.id;
-        const deletedUser = await Register.findByIdAndDelete(_id);
-
-        if (!deletedUser) {
-            return res.status(404).json({ error: "❌ User not found" });
-        }
-
-        // 📨 Send deleted data to Kafka
-        await sendMessagedelete("UserDeleteTopic", deletedUser);
-
-        console.log("🗑️ User deleted and sent to Kafka:", deletedUser);
-        res.status(200).json({
-            message: "✅ User deleted successfully",
-            data: deletedUser,
-        });
-    } catch (error) {
-        console.error("❌ Delete error:", error);
-        res.status(500).json({ error: "Internal server error" });
-    }
-});
-
 module.exports = router;
 
 

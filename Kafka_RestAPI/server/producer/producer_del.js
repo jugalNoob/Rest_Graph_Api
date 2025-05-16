@@ -1,57 +1,48 @@
-const kafka = require("../client/client"); // Your Kafka client
+// producer_del.js
+const kafka = require("../client/client");
 let producer;
 
 async function initProducer() {
-    try {
-        producer = kafka.producer();
-        await producer.connect();
-        console.log("✅ Kafka Producer connected");
-    } catch (error) {
-        console.error("❌ Error initializing Kafka Producer:", error);
-    }
+  if (!producer) {
+    producer = kafka.producer();
+    await producer.connect();
+    console.log("✅ Kafka Producer connected");
+  }
 }
 
 async function sendMessagedelete(topic, message) {
-    try {
-        if (!producer) {
-            throw new Error("Kafka producer is not initialized.");
-        }
+  try {
+    // lazy init
+    if (!producer) await initProducer();
 
-        await producer.send({
-            topic,
-            messages: [
-                {
-                    key: message._id?.toString() || null, // In case of MongoDB ID
-                    value: JSON.stringify(message),
-                },
-            ],
-        });
+    await producer.send({
+      topic,
+      messages: [
+        {
+          key: message.id?.toString() || null,
+          value: JSON.stringify(message),
+        },
+      ],
+    });
 
-        console.log(`📤 Message sent to Kafka topic "${topic}":`, message);
-    } catch (error) {
-        console.error("❌ Error sending message to Kafka:", error);
-    }
+    console.log(`📤 Message sent to Kafka topic "${topic}":`, message);
+  } catch (error) {
+    console.error("❌ Error sending message to Kafka:", error);
+  }
 }
 
 async function disconnectProducer() {
-    try {
-        if (producer) {
-            await producer.disconnect();
-            console.log("✅ Kafka Producer disconnected");
-        }
-    } catch (error) {
-        console.error("❌ Error disconnecting Kafka Producer:", error);
-    }
+  if (producer) await producer.disconnect();
+  console.log("✅ Kafka Producer disconnected");
 }
 
-// Graceful shutdown
 process.on("SIGINT", async () => {
-    await disconnectProducer();
-    process.exit(0);
+  await disconnectProducer();
+  process.exit(0);
 });
 
 module.exports = {
-    initProducer,
-    sendMessagedelete,
-    disconnectProducer,
+  initProducer,
+  sendMessagedelete,
+  disconnectProducer,
 };

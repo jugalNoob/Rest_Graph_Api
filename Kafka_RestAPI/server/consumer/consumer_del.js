@@ -1,35 +1,40 @@
-// kafka/deleteConsumer.js
-const kafka = require("../client/client");
+const kafka     = require("../client/client");
+const Register  = require("../module/student");
+const mongoose  = require("mongoose");
 const connectDB = require("../db/conn");
 
-async function initDeleteConsumer() {
-    const consumer = kafka.consumer({ groupId: "delete-group-1" });
+async function initConsumer() {
+  const consumer = kafka.consumer({ groupId: "user-group-delete" });
+  await consumer.connect();
+  await consumer.subscribe({ topic: "DeleteUserTopic", fromBeginning: true });
 
-    try {
-        await consumer.connect();
-        console.log("✅ Kafka Delete Consumer connected");
+  await consumer.run({
+    eachMessage: async ({ message }) => {
+      const { id, name } = JSON.parse(message.value.toString());
 
-        await consumer.subscribe({ topic: "UserDeleteTopic", fromBeginning: true });
-        console.log("📡 Subscribed to 'UserDeleteTopic'");
+      // Convert string `id` into a real ObjectId:
+      const _id = mongoose.Types.ObjectId.isValid(id)
+        ? new mongoose.Types.ObjectId(id)
+        : null;
 
-        await consumer.run({
-            eachMessage: async ({ message }) => {
-                try {
-                    const userData = JSON.parse(message.value.toString());
-                    console.log("🗑️ Received deleted user data:", userData);
+      if (!_id) {
+        console.warn(`⚠️ Invalid ObjectId: ${id}`);
+        return;
+      }
 
-                    // Optional: Log or archive data here
-                } catch (err) {
-                    console.error("❌ Failed to process delete message:", err);
-                }
-            },
-        });
-    } catch (error) {
-        console.error("❌ Kafka Delete Consumer Error:", error);
-    }
+      // Actually delete by _id and name:
+      const deletedUser = await Register.findOneAndDelete({ _id, name });
+
+      if (deletedUser) {
+        console.log(`🗑️ Deleted user:`, deletedUser);
+      } else {
+        console.warn(`⚠️ No user found with _id=${id} & name="${name}"`);
+      }
+    },
+  });
 }
 
 (async () => {
-    await connectDB();
-    await initDeleteConsumer();
+  await connectDB();
+  await initConsumer();
 })();
