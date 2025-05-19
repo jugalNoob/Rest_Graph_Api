@@ -1,14 +1,11 @@
 const kafka = require("../client/client");
-const Register = require("../module/student"); // MongoDB model
-
+const Register = require("../module/student"); // This is unused here, can remove
 const producer = kafka.producer();
-
-
 
 async function connectProducer() {
     await producer.connect();
     console.log("Kafka Producer connected");
-  }
+}
 
 async function sendMessageupdate(topic, message) {
     try {
@@ -28,4 +25,4 @@ async function sendMessageupdate(topic, message) {
 // Connect producer when the app starts
 connectProducer();
 
-module.exports = {sendMessageupdate };
+module.exports = { sendMessageupdate };

@@ -6,7 +6,7 @@ async function initProducer() {
   if (!producer) {
     producer = kafka.producer();
     await producer.connect();
-    console.log("✅ Kafka Producer connected");
+    console.log("✅ Kafka Producer connected deltete");
   }
 }
 

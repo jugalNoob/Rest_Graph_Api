@@ -1,7 +1,7 @@
 const express = require("express");
 const connectDB = require("./db/conn"); // Ensure DB connection is imported
 const router = require("./routes/router");
-
+const redisClient = require("./Redis/redisClient"); // Import Redis client
 const app = express();
 const port = 9000;
 
