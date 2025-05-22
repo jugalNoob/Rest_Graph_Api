@@ -21,11 +21,16 @@ async function initConsumer() {
 
           console.log(`📥 Received update for _id: ${_id}, name: ${name}, age: ${age}, country: ${country}`);
 
+       const user = await Register.findOne({ _id });
+      if (!user) {
+        console.warn(`⚠️ No user found with _id: ${_id}`);
+        return;
+      }
+
           // Use updateOne or updateMany - usually updateOne is better for unique _id updates
-          const updateResult = await Register.updateOne(
-            { _id },
-            { name, age, country }
-          );
+          const updateResult = await Register.findByIdAndUpdate(_id, { name, age, country }, { new: true });
+
+            console.log("🔍 Update Result:", updateResult);
 
           if (updateResult.modifiedCount > 0) {
             console.log(`✅ Successfully updated user with _id: ${_id}`);

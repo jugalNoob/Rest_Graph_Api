@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+  createBrowserRouter, RouterProvider
+} from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Form from "./page/Form"
+import Get from './page/Get'
+import Home from "./page/Home"
+import Update from './page/Update'
+import Detele from './page/Detele'
+
+
+
+const router=createBrowserRouter([  /// install react router https://medium.com/@adebayosilas/introduction-to-react-router-v6-4-6-11-1-f56c7710282e
+  
+  {
+
+    path:'/',
+    element:<Home/>
+  },
+
+  {
+    path:'/get',
+    element:<Get/>
+  },
+
+  {
+    path:'/form',
+    element:<Form/>
+  }
+  ,
+  {
+    path:'/update',
+    element:<Update/>
+  },
+
+  {
+    path:'/delete',
+    element:<Detele/>
+  }
+
+])
+
+function App(){
+  return <RouterProvider router={router} />
 }
-
-export default App;
+export default App
