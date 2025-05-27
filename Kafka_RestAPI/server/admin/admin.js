@@ -12,7 +12,7 @@ async function init() {
   await admin.createTopics({
     topics: [{ 
       topic: 'UserRestapi', 
-      numPartitions: 2, 
+      numPartitions: 4, 
       replicationFactor: 1 
     }],
   });

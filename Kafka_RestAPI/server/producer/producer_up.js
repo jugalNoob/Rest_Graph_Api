@@ -13,6 +13,7 @@ async function sendMessageupdate(topic, message) {
             throw new Error("Kafka producer is not initialized.");
         }
         await producer.send({
+                partition:2,
             topic,
             messages: [{ key: message._id, value: JSON.stringify(message) }],
         });

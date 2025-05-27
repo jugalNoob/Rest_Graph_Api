@@ -3,7 +3,7 @@ const Register = require("../module/student");
 const connectDB = require("../db/conn");
 
 async function initConsumer() {
-  const consumer = kafka.consumer({ groupId: "user-group-1" });
+  const consumer = kafka.consumer({ groupId: "user-group-Update" });
 
   try {
     console.log("🔄 Connecting Kafka Consumer...");

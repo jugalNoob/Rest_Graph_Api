@@ -16,6 +16,7 @@ async function sendMessagedelete(topic, message) {
     if (!producer) await initProducer();
 
     await producer.send({
+          partition:3,
       topic,
       messages: [
         {

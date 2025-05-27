@@ -34,6 +34,7 @@ async function sendMessage(topic, messageObj) {
         }
 
         await producer.send({
+                partition:1,
             topic,
             messages: [{ key: messageObj.name, value: JSON.stringify(messageObj) }],
         });
