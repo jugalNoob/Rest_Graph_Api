@@ -1,58 +1,44 @@
+// consumer.js
 const kafka = require("../client/client");
-const Register = require("../module/student");
 const connectDB = require("../db/conn");
 
 async function initConsumer() {
-    const consumer = kafka.consumer({ groupId: "user-group-GetAdvanace" });
+  const consumer = kafka.consumer({ groupId: "user-consumer-group" });
 
-    try {
-        console.log("🔄 Connecting Kafka Consumer...");
-        await consumer.connect();
-        console.log("✅ Consumer connected successfully");
+  try {
+    await connectDB();
+    console.log("✅ MongoDB connected");
 
-        // Subscribe to the Kafka topic
-        await consumer.subscribe({ topic: "user-Get", fromBeginning: true });
-        console.log("✅ Subscribed to topic 'UserAPI'");
+    await consumer.connect();
+    console.log("✅ Kafka Consumer connected");
 
-        await consumer.run({
-            eachMessage: async ({ message }) => {
-                try {
-                    // Log the raw message to inspect it
-                    console.log("📥 Raw message from Kafka:", message.value.toString());
+    await consumer.subscribe({ topic: "get_user", fromBeginning: false });
 
-                    const user = JSON.parse(message.value.toString());
-                    console.log(`📥 Received user data: ${JSON.stringify(user)}`);
+    await consumer.run({
+      eachMessage: async ({ topic, partition, message }) => {
+        try {
+          const value = message.value.toString();
+          const parsed = JSON.parse(value);
 
-                    // Validate required fields
-                    const requiredFields = [
-                        "name", "gender", "bio", "country", "email", 
-                        "bloodGroup", "birthDate", "age", "price"
-                    ];
+          console.log(`📩 Topic: ${topic} | Partition: ${partition}`);
+          console.log("👤 Users received:", parsed);
 
-                    for (const field of requiredFields) {
-                        if (!user[field]) {
-                            console.error(`❌ Missing required field: ${field} in message:`, user);
-                            return;
-                        }
-                    }
+        } catch (err) {
+          console.error("❌ Failed to parse message:", err.message);
+        }
+      },
+    });
 
-                    // Create a new user in MongoDB without checking for duplicates
-                    const newUser = new Register(user);
-                    await newUser.save();
-                    console.log(`✅ New user added: ${user.name}`);
+    process.on("SIGINT", async () => {
+      console.log("🛑 Disconnecting Kafka consumer...");
+      await consumer.disconnect();
+      process.exit(0);
+    });
 
-                } catch (err) {
-                    console.error("❌ Error processing message:", err.message);
-                }
-            },
-        });
-    } catch (err) {
-        console.error("❌ Kafka Consumer Error:", err.message);
-    }
+  } catch (err) {
+    console.error("❌ Consumer init error:", err.message);
+    process.exit(1);
+  }
 }
 
-// Initialize the consumer after connecting to the database
-(async () => {
-    await connectDB();
-    await initConsumer();
-})();
+initConsumer();

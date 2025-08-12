@@ -3,7 +3,9 @@ const router = express.Router();
 const NorthData=require("../controller/North")
 const Updateone=require("../controller/Update")
 
-const GetAdvance=require("../controller/AdvanceGet")
+const   rateLimiterradis= require("../RateLimit/Redis.js"); // Redis Pub/Sub limiter
+const SearhAdvaanceRedis = require("../controller/AdvSeachRedisPagination.js");
+
 const Deleteone=require("../controller/Delete")
 // const SouthData=require("../controller/South")
 // const { sendNorthMessage } = require("../producer/producer_north");
@@ -11,6 +13,11 @@ const Deleteone=require("../controller/Delete")
 router.post("/send", async (req, res) => {
 
 });
+
+// 🔍 Advanced query search with Redis & pagination
+router.get("/apisearchredis",  rateLimiterradis, SearhAdvaanceRedis.ApigetQuearyAdavanceRedis);
+
+
 
 router.post('/v1/North', NorthData.NorthData)
 

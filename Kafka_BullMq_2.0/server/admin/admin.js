@@ -18,12 +18,11 @@ async function init() {
         numPartitions: 3,
         replicationFactor: 1
       },
-      {
-        topic: 'user-Get',
+       {
+        topic: 'get_user',
         numPartitions: 3,
         replicationFactor: 1
       },
-
           {
         topic: 'user-Delete',
         numPartitions: 3,

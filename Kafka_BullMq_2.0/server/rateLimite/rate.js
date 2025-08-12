@@ -1,31 +1,59 @@
-let one = 0; // Persistent counter across requests
-let resetInProgress = false; // Prevent multiple resets
+const redisClient = require("../Redis/redisClient");
 
-// Middleware for counter logic
-const counterMiddleware = (req, res, next) => {
-    if (one >= 4) {
-        if (!resetInProgress) {
-            resetInProgress = true;
-            console.log("Reset will occur in 5 seconds.");
+const rateLimiterradis = async (req, res, next) => {
+  const ip = req.ip;
+  const key = `rate_limit:${ip}`;
+  const windowLimit = 15;      // Allow 5 requests
+  const windowTTL = 100;       // in 10 seconds
+  const blockTTL = 20;        // Block for 20 seconds
 
-            setTimeout(() => {
-                one = 0;
-                resetInProgress = false;
-                console.log("Counter reset.");
-            }, 5000); // 5-second delay
-        }
+  try {
+    const value = await redisClient.get(key);
+    const ttl = await redisClient.ttl(key);
 
-        // Improved error response for better client understanding
-        return res.status(429).json({
-            error: "Too Many Requests",
-            message: "Please wait a few seconds before trying again. because user try Too Many Requests just wait 5 second",
-            retryAfter: 5 // Recommended delay (in seconds)
-        });
+    console.log(`[Redis] Key: ${key} | Value: ${value} | TTL: ${ttl}s`);
+
+    if (value === "BLOCKED") {
+      // User is already blocked
+      return res.status(429).json({
+        error: "⛔ Too many requests. Try again later.",
+        retryAfter: `${ttl} seconds`,
+      });
     }
 
-    req.counterValue = one; // Track counter value in request object
-    one++;
-    next(); // Continue to the next middleware
+    if (value !== null) {
+      const count = parseInt(value);
+
+      if (!isNaN(count)) {
+        if (count + 1 >= windowLimit) {
+          // 🟥 Hit the 6th request
+          console.log(`[Redis] BLOCKING ${key} for ${blockTTL}s`);
+          await redisClient.setEx(key, blockTTL, "BLOCKED");
+
+          return res.status(429).json({
+            error: "⛔ Too many requests. Try again later.",
+            retryAfter: `${blockTTL} seconds`,
+          });
+        } else {
+          console.log(`[Redis] INCREMENT ${key} → ${count + 1}`);
+          await redisClient.incr(key);
+        }
+      } else {
+        // If somehow key exists but isn't a number → reset it
+        await redisClient.setEx(key, windowTTL, "1");
+      }
+    } else {
+      // 🟢 First request
+      console.log(`[Redis] FIRST request → SET ${key} = 1 with TTL ${windowTTL}s`);
+      await redisClient.setEx(key, windowTTL, "1");
+    }
+
+    next();
+
+  } catch (err) {
+    console.error("Rate limiter error:", err);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };
 
-module.exports = counterMiddleware;
+module.exports = rateLimiterradis;
