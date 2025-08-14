@@ -3,7 +3,7 @@ const redisClient = require("../Redis/redisClient");
 const rateLimiterradis = async (req, res, next) => {
   const ip = req.ip;
   const key = `rate_limit:${ip}`;
-  const windowLimit = 15;      // Allow 5 requests
+  const windowLimit = 20;      // Allow 5 requests
   const windowTTL = 100;       // in 10 seconds
   const blockTTL = 20;        // Block for 20 seconds
 

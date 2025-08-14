@@ -41,7 +41,7 @@ async function sendMessage(topic, messageObj, key = null) {
       ],
     });
 console.log(`📩 Sent to "${topic}":`)
-    console.log(`📩 Sent to "${topic}":`, messageObj);
+    // console.log(`📩 Sent to "${topic}":`, messageObj);
   } catch (error) {
     console.error("❌ Kafka send error:", error.message || error);
     throw error;
